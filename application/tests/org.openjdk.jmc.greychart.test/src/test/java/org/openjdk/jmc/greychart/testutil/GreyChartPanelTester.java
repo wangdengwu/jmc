@@ -52,7 +52,6 @@ import org.openjdk.jmc.ui.common.xydata.ITimestampedData;
  * Little test program creating a graph containing a huge amount of data.
  */
 public class GreyChartPanelTester {
-	private static final SimpleDateFormat FORMATTER = new SimpleDateFormat("HH:mm:ss");
 
 	/**
 	 * Program entry point.
@@ -66,12 +65,11 @@ public class GreyChartPanelTester {
 		DateXAxis xaxis = new DateXAxis(graph);
 		xaxis.setRange(TimestampedDataProviderTest.getMinX(), TimestampedDataProviderTest.getMaxX());
 		xaxis.setFormatter(new TickFormatter() {
-			@Override
 			public String format(Number value, Number min, Number max, Number labelDistance) {
+				SimpleDateFormat FORMATTER = new SimpleDateFormat("HH:mm:ss");
 				return FORMATTER.format(new Date(value.longValue()));
 			}
 
-			@Override
 			public String getUnitString(Number min, Number max) {
 				return "";
 			}
